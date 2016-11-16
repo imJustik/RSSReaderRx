@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class FindFeedControllerViewModel {
+class FindFeedViewModel {
     
     var searchText = Variable("")
     
@@ -21,7 +21,8 @@ class FindFeedControllerViewModel {
             .throttle(0.3, scheduler: MainScheduler.instance)
             .flatMapLatest {
                 ServerManager.shared.getRSSFindFeed($0)
-            }.asDriver(onErrorJustReturn: ([]))
+            }
+            .asDriver(onErrorJustReturn: ([]))
              .debug("FindFeedViewModel")
         
     }

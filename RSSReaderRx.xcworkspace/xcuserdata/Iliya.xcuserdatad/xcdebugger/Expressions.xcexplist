@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ServerManager.(getRSSFindFeed(String) -&gt; Observable&lt;[FindFeedModel]&gt;).(closure #1):ServerManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FindFeedModel.init(unboxer : Unboxer) throws -&gt; FindFeedModel:FindFeedModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.url">
+            </PersistentString>
+            <PersistentString
+               value = "unboxer.unbox(key: &quot;url&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "unboxer.unbox(keyPath: &quot;responseData.entries.url&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

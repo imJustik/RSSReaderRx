@@ -1,0 +1,19 @@
+PODS:
+  - RxCocoa (3.0.1):
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.1)
+  - Unbox (2.2.0)
+
+DEPENDENCIES:
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
+  - Unbox
+
+SPEC CHECKSUMS:
+  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
+  Unbox: 03d7128ce429987986bc08d967e9d5e0da158946
+
+PODFILE CHECKSUM: 2e90160c7a4e24191606dcf478f2ad88cb579bcf
+
+COCOAPODS: 1.2.0.beta.1

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var searchBar : UISearchBar {return searchController.searchBar }
     
-    
+   
     override func viewDidLoad() {
          super.viewDidLoad()
         
@@ -27,24 +27,34 @@ class ViewController: UIViewController {
         findFeedViewModel = FindFeedViewModel()
         
         if let viewModel = findFeedViewModel {
-            _ = viewModel.data.drive(tableView.rx.items(cellIdentifier: "Cell", cellType: FindFeedCell.self)) {_, findFeed, cell in
-                cell.contentSnippet.text = findFeed.contentSnippet
-                cell.titleLable.text = findFeed.title
+            _ = viewModel.data.drive(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
+                cell.contentSnippet.attributedText = findFeed.contentSnippet
+                cell.titleLable.attributedText = findFeed.title
                 
             }
 
         
         _ = searchBar.rx.text.orEmpty.bindTo(viewModel.searchText)
         _ = searchBar.rx.cancelButtonClicked.map{""}.bindTo(viewModel.searchText)
+            
+            _ = searchBar.rx.textDidEndEditing.asDriver().drive {
+                self.searchBar.endEditing(true)
+            }
         
     }
 }
 
     func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
-        searchBar.showsCancelButton = true
-        searchBar.text = "imj"
+        searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter username"
+        searchBar.text = "Путин"
+        searchBar.searchBarStyle = UISearchBarStyle.prominent
+        searchBar.isTranslucent = false
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = UIColor.white
+        searchBar.barTintColor = UIColor.white
+        
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
