@@ -26,5 +26,7 @@ class FindFeedViewModel {
              .debug("FindFeedViewModel")
         
     }
+    
+    /*try NSAttributedString(data: "<span style=\"font-family: Times New Roman; font-size: 18\">\(title)</span>".data(using: String.Encoding.unicode)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: &myAttribute)*/
 
 }

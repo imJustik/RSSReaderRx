@@ -28,12 +28,11 @@ class ViewController: UIViewController {
         
         if let viewModel = findFeedViewModel {
             _ = viewModel.data.drive(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
-                cell.contentSnippet.attributedText = findFeed.contentSnippet
-                cell.titleLable.attributedText = findFeed.title
+                cell.contentSnippet.attributedText  = self.prepareHTMLText(text: findFeed.contentSnippet, font: "Times New Roman", fontSize: 16)
+                cell.titleLable.attributedText = self.prepareHTMLText(text: findFeed.title, font: "Times New Roman", fontSize: 18)
                 
             }
 
-        
         _ = searchBar.rx.text.orEmpty.bindTo(viewModel.searchText)
         _ = searchBar.rx.cancelButtonClicked.map{""}.bindTo(viewModel.searchText)
             
@@ -58,10 +57,18 @@ class ViewController: UIViewController {
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    private func prepareHTMLText(text: String, font: String, fontSize: Int) -> NSAttributedString {
+        do {
+            return try NSAttributedString(data: "<span style=\"font-family: \(font); font-size: \(fontSize)\">\(text)</span>".data(using: String.Encoding.unicode)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        }
+        catch {
+            return NSAttributedString(string: "")
+        }
     }
+
+    
 
 
 }
