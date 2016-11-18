@@ -12,9 +12,7 @@ import RxCocoa
 import Unbox
 private let _singletonInstance = ServerManager()
 
-enum MyError:Error {
-    case error
-}
+
 class ServerManager {
     private let basicURL = "https://ajax.googleapis.com/ajax/services/feed/find?v=1.0&q="
     class var shared: ServerManager {
@@ -27,15 +25,12 @@ class ServerManager {
             else {
                 return Observable.just([])
         }
-        
         return URLSession.shared.rx.json(url: url)
-            .debug("JSON")
             .catchErrorJustReturn(Observable.just([]))
             .map {
                 var findFeeds = [FindFeedModel]()
                 if let dict = $0 as? UnboxableDictionary {
                      findFeeds = try unbox(dictionary: dict, atKeyPath: "responseData.entries")
-                    
                 }
                 return findFeeds
         }

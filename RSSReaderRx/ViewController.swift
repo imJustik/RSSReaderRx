@@ -23,34 +23,35 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
          super.viewDidLoad()
         
+        self.title = "RSS Reader"
+        
         configureSearchController()
         findFeedViewModel = FindFeedViewModel()
         
         if let viewModel = findFeedViewModel {
-            _ = viewModel.data.drive(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
+            _ = viewModel.arrayFindFeeds.bindTo(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
                 cell.contentSnippet.attributedText = findFeed.contentSnippet
                 cell.titleLable.attributedText = findFeed.title
-                
+        
             }
-
         
         _ = searchBar.rx.text.orEmpty.bindTo(viewModel.searchText)
         _ = searchBar.rx.cancelButtonClicked.map{""}.bindTo(viewModel.searchText)
             
-            _ = searchBar.rx.textDidEndEditing.asDriver().drive {
-                self.searchBar.endEditing(true)
-            }
-        
+            
     }
+        
 }
+    
+    
 
     func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter username"
-        searchBar.text = "Путин"
+        //searchBar.text = "Путин"
         searchBar.searchBarStyle = UISearchBarStyle.prominent
-        searchBar.isTranslucent = false
+        //searchBar.isTranslucent = false
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = UIColor.white
         searchBar.barTintColor = UIColor.white

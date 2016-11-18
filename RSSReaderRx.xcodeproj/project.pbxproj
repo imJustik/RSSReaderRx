@@ -16,7 +16,6 @@
 		4571E0CF1DDBB92800E89820 /* FindFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0CE1DDBB92800E89820 /* FindFeedViewModel.swift */; };
 		4571E0D11DDBBB2300E89820 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0D01DDBBB2300E89820 /* ServerManager.swift */; };
 		4571E0D31DDBC2F000E89820 /* FindFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0D21DDBC2F000E89820 /* FindFeedCell.swift */; };
-		4571E0D51DDC9D2900E89820 /* FindFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0D41DDC9D2900E89820 /* FindFeedManager.swift */; };
 		BE965ECBE422EC296EA928FE /* Pods_RSSReaderRx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090EE6395513B63B4687167C /* Pods_RSSReaderRx.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +32,6 @@
 		4571E0CE1DDBB92800E89820 /* FindFeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFeedViewModel.swift; sourceTree = "<group>"; };
 		4571E0D01DDBBB2300E89820 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		4571E0D21DDBC2F000E89820 /* FindFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindFeedCell.swift; path = RSSReaderRx/Views/FindFeedCell.swift; sourceTree = SOURCE_ROOT; };
-		4571E0D41DDC9D2900E89820 /* FindFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFeedManager.swift; sourceTree = "<group>"; };
 		B4D60A0A4D4A353F206A969B /* Pods-RSSReaderRx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReaderRx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSReaderRx/Pods-RSSReaderRx.debug.xcconfig"; sourceTree = "<group>"; };
 		FF81A5CEE5DDDE6167CC980F /* Pods-RSSReaderRx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReaderRx.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSSReaderRx/Pods-RSSReaderRx.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				4571E0D01DDBBB2300E89820 /* ServerManager.swift */,
-				4571E0D41DDC9D2900E89820 /* FindFeedManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4571E0D31DDBC2F000E89820 /* FindFeedCell.swift in Sources */,
-				4571E0D51DDC9D2900E89820 /* FindFeedManager.swift in Sources */,
 				4571E0D11DDBBB2300E89820 /* ServerManager.swift in Sources */,
 				4540E7BA1DDBADF70087F482 /* ViewController.swift in Sources */,
 				4571E0CD1DDBB5B400E89820 /* FindFeedModel.swift in Sources */,
