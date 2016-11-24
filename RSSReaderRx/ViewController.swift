@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let disposeBag = DisposeBag()
     var findFeedViewModel : FindFeedViewModel?
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -23,25 +24,44 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
          super.viewDidLoad()
         
+        self.title = "RSS Reader"
+        
         configureSearchController()
         findFeedViewModel = FindFeedViewModel()
         
         if let viewModel = findFeedViewModel {
-            _ = viewModel.data.drive(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
-                cell.contentSnippet.attributedText  = self.prepareHTMLText(text: findFeed.contentSnippet, font: "Times New Roman", fontSize: 16)
-                cell.titleLable.attributedText = self.prepareHTMLText(text: findFeed.title, font: "Times New Roman", fontSize: 18)
-                
-            }
-
+            _ = viewModel.arrayFindFeeds.bindTo(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
+                cell.contentSnippet.attributedText = findFeed.content
+                cell.titleLable.attributedText = findFeed.title
+        
+            }.addDisposableTo(disposeBag)
+        
         _ = searchBar.rx.text.orEmpty.bindTo(viewModel.searchText)
         _ = searchBar.rx.cancelButtonClicked.map{""}.bindTo(viewModel.searchText)
             
-            _ = searchBar.rx.textDidEndEditing.asDriver().drive {
-                self.searchBar.endEditing(true)
-            }
-        
     }
+       _ =  tableView.rx.modelSelected(FindFeedRepresent.self).subscribe(onNext: {
+            print($0)
+            let _storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let loadFeedVC =  _storyboard.instantiateViewController(withIdentifier: "LoadFeedVC") as! LoadFeedViewController
+            loadFeedVC.stringURL = $0.url
+            self.navigationController?.pushViewController(loadFeedVC, animated: true)
+        })
 }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch segue.identifier {
+//        case "ToLoadFeedsSegue"? :
+//            if let indexPath = self.tableView.indexPathForSelectedRow {
+//                let loadFeedVC: LoadFeedViewController = segue.destination as! LoadFeedViewController
+//                loadFeedVC.stringURL = tableView.cellForRow(at: indexPath) as
+//            }
+//        default:
+//            break
+//        }
+//    }
+    
+    
 
     func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
@@ -49,7 +69,7 @@ class ViewController: UIViewController {
         searchBar.placeholder = "Enter username"
         searchBar.text = "Путин"
         searchBar.searchBarStyle = UISearchBarStyle.prominent
-        searchBar.isTranslucent = false
+        //searchBar.isTranslucent = false
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = UIColor.white
         searchBar.barTintColor = UIColor.white
@@ -68,8 +88,7 @@ class ViewController: UIViewController {
         }
     }
 
-    
-
+   
 
 }
 

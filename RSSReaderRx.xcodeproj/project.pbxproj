@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452B1D0C1DDFA09300957400 /* LoadFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B1D0B1DDFA09300957400 /* LoadFeedCell.swift */; };
+		452B1D0E1DDFA2AC00957400 /* LoadFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B1D0D1DDFA2AC00957400 /* LoadFeedModel.swift */; };
+		452B1D101DDFA31800957400 /* FeedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B1D0F1DDFA31800957400 /* FeedProtocol.swift */; };
 		4540E7B81DDBADF70087F482 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540E7B71DDBADF70087F482 /* AppDelegate.swift */; };
 		4540E7BA1DDBADF70087F482 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540E7B91DDBADF70087F482 /* ViewController.swift */; };
 		4540E7BD1DDBADF70087F482 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4540E7BB1DDBADF70087F482 /* Main.storyboard */; };
@@ -16,12 +19,16 @@
 		4571E0CF1DDBB92800E89820 /* FindFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0CE1DDBB92800E89820 /* FindFeedViewModel.swift */; };
 		4571E0D11DDBBB2300E89820 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0D01DDBBB2300E89820 /* ServerManager.swift */; };
 		4571E0D31DDBC2F000E89820 /* FindFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0D21DDBC2F000E89820 /* FindFeedCell.swift */; };
-		4571E0D51DDC9D2900E89820 /* FindFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571E0D41DDC9D2900E89820 /* FindFeedManager.swift */; };
+		45AA1FFA1DE5940900CD291D /* LoadFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA1FF91DE5940900CD291D /* LoadFeedViewController.swift */; };
+		45AA1FFC1DE596C400CD291D /* LoadFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA1FFB1DE596C400CD291D /* LoadFeedViewModel.swift */; };
 		BE965ECBE422EC296EA928FE /* Pods_RSSReaderRx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090EE6395513B63B4687167C /* Pods_RSSReaderRx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		090EE6395513B63B4687167C /* Pods_RSSReaderRx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSReaderRx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		452B1D0B1DDFA09300957400 /* LoadFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFeedCell.swift; sourceTree = "<group>"; };
+		452B1D0D1DDFA2AC00957400 /* LoadFeedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFeedModel.swift; sourceTree = "<group>"; };
+		452B1D0F1DDFA31800957400 /* FeedProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedProtocol.swift; sourceTree = "<group>"; };
 		4540E7B41DDBADF70087F482 /* RSSReaderRx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReaderRx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4540E7B71DDBADF70087F482 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4540E7B91DDBADF70087F482 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +40,8 @@
 		4571E0CE1DDBB92800E89820 /* FindFeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFeedViewModel.swift; sourceTree = "<group>"; };
 		4571E0D01DDBBB2300E89820 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		4571E0D21DDBC2F000E89820 /* FindFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindFeedCell.swift; path = RSSReaderRx/Views/FindFeedCell.swift; sourceTree = SOURCE_ROOT; };
-		4571E0D41DDC9D2900E89820 /* FindFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFeedManager.swift; sourceTree = "<group>"; };
+		45AA1FF91DE5940900CD291D /* LoadFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFeedViewController.swift; sourceTree = "<group>"; };
+		45AA1FFB1DE596C400CD291D /* LoadFeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFeedViewModel.swift; sourceTree = "<group>"; };
 		B4D60A0A4D4A353F206A969B /* Pods-RSSReaderRx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReaderRx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSReaderRx/Pods-RSSReaderRx.debug.xcconfig"; sourceTree = "<group>"; };
 		FF81A5CEE5DDDE6167CC980F /* Pods-RSSReaderRx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReaderRx.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSSReaderRx/Pods-RSSReaderRx.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				4571E0D01DDBBB2300E89820 /* ServerManager.swift */,
-				4571E0D41DDC9D2900E89820 /* FindFeedManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -101,7 +108,9 @@
 		4571E0C81DDBB26800E89820 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				452B1D0F1DDFA31800957400 /* FeedProtocol.swift */,
 				4571E0CC1DDBB5B400E89820 /* FindFeedModel.swift */,
+				452B1D0D1DDFA2AC00957400 /* LoadFeedModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				4571E0CE1DDBB92800E89820 /* FindFeedViewModel.swift */,
+				45AA1FFB1DE596C400CD291D /* LoadFeedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -130,6 +140,8 @@
 				4571E0D21DDBC2F000E89820 /* FindFeedCell.swift */,
 				4540E7B91DDBADF70087F482 /* ViewController.swift */,
 				4540E7BB1DDBADF70087F482 /* Main.storyboard */,
+				452B1D0B1DDFA09300957400 /* LoadFeedCell.swift */,
+				45AA1FF91DE5940900CD291D /* LoadFeedViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,11 +280,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4571E0D31DDBC2F000E89820 /* FindFeedCell.swift in Sources */,
-				4571E0D51DDC9D2900E89820 /* FindFeedManager.swift in Sources */,
+				452B1D0C1DDFA09300957400 /* LoadFeedCell.swift in Sources */,
 				4571E0D11DDBBB2300E89820 /* ServerManager.swift in Sources */,
+				452B1D0E1DDFA2AC00957400 /* LoadFeedModel.swift in Sources */,
+				45AA1FFA1DE5940900CD291D /* LoadFeedViewController.swift in Sources */,
 				4540E7BA1DDBADF70087F482 /* ViewController.swift in Sources */,
 				4571E0CD1DDBB5B400E89820 /* FindFeedModel.swift in Sources */,
 				4540E7B81DDBADF70087F482 /* AppDelegate.swift in Sources */,
+				45AA1FFC1DE596C400CD291D /* LoadFeedViewModel.swift in Sources */,
+				452B1D101DDFA31800957400 /* FeedProtocol.swift in Sources */,
 				4571E0CF1DDBB92800E89820 /* FindFeedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
