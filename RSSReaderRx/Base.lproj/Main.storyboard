@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KJz-vv-jVB" id="HvB-XQ-h4I">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I1-bN-dnd">
@@ -74,17 +75,17 @@
                     <navigationItem key="navigationItem" title="RSS Reader" id="PPR-Ml-Vj0"/>
                     <connections>
                         <outlet property="tableView" destination="E0Q-xj-sQZ" id="w0Q-bw-OjG"/>
-                        <segue destination="lea-7I-Dar" kind="push" id="Pkg-Rp-Alh"/>
+                        <segue destination="lea-7I-Dar" kind="push" identifier="ToLoadFeedsSegue" id="k0A-gs-Hvt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2980" y="169.56521739130437"/>
         </scene>
-        <!--View Controller-->
+        <!--Feeds-->
         <scene sceneID="X51-Lr-FL2">
             <objects>
-                <viewController id="lea-7I-Dar" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadFeedVC" id="lea-7I-Dar" customClass="LoadFeedViewController" customModule="RSSReaderRx" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXx-Rh-tFh"/>
                         <viewControllerLayoutGuide type="bottom" id="Fkp-fa-Fkd"/>
@@ -93,17 +94,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9V3-JD-5ck">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9V3-JD-5ck">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jRP-ir-BGw">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadFeedCell" rowHeight="140" id="jRP-ir-BGw" customClass="LoadFeedCell" customModule="RSSReaderRx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jRP-ir-BGw" id="Rky-UL-uKc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgF-Cg-clP">
+                                                    <rect key="frame" x="8" y="113.5" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-Kb-wxU">
+                                                    <rect key="frame" x="8" y="8" width="359" height="100.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IgF-Cg-clP" firstAttribute="leading" secondItem="Rky-UL-uKc" secondAttribute="leading" constant="8" id="0OL-rg-WRX"/>
+                                                <constraint firstItem="IgF-Cg-clP" firstAttribute="top" secondItem="Zrx-Kb-wxU" secondAttribute="bottom" constant="5" id="AdG-ah-BUY"/>
+                                                <constraint firstAttribute="trailing" secondItem="IgF-Cg-clP" secondAttribute="trailing" constant="8" id="Orh-LM-ptM"/>
+                                                <constraint firstAttribute="bottom" secondItem="IgF-Cg-clP" secondAttribute="bottom" constant="5" id="PS5-oM-aJn"/>
+                                                <constraint firstItem="Zrx-Kb-wxU" firstAttribute="leading" secondItem="Rky-UL-uKc" secondAttribute="leadingMargin" id="Tqf-9d-W7J"/>
+                                                <constraint firstItem="Zrx-Kb-wxU" firstAttribute="top" secondItem="Rky-UL-uKc" secondAttribute="topMargin" id="ege-Gf-M2h"/>
+                                                <constraint firstItem="Zrx-Kb-wxU" firstAttribute="trailing" secondItem="Rky-UL-uKc" secondAttribute="trailingMargin" id="wK7-T8-XbE"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="FeedLabel" destination="IgF-Cg-clP" id="xOx-mh-v1z"/>
+                                            <outlet property="titleLable" destination="Zrx-Kb-wxU" id="u50-mJ-5Iz"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -116,7 +144,10 @@
                             <constraint firstItem="9V3-JD-5ck" firstAttribute="top" secondItem="yPu-gU-o7p" secondAttribute="top" id="uJV-Ge-WaX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CxM-ad-xH8"/>
+                    <navigationItem key="navigationItem" title="Feeds" id="CxM-ad-xH8"/>
+                    <connections>
+                        <outlet property="tableView" destination="9V3-JD-5ck" id="Iqq-jE-m5z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z03-lM-5Xi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,6 +198,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="h00-xg-mcv"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="arv-Gr-H7o">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -180,11 +212,11 @@
             </objects>
             <point key="canvasLocation" x="903" y="833"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Ui4-rv-C0q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xnO-If-jlT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="DFx-iT-KGU"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="DFx-iT-KGU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J1R-ZH-XeQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

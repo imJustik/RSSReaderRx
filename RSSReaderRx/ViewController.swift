@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let disposeBag = DisposeBag()
     var findFeedViewModel : FindFeedViewModel?
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -30,18 +31,35 @@ class ViewController: UIViewController {
         
         if let viewModel = findFeedViewModel {
             _ = viewModel.arrayFindFeeds.bindTo(tableView.rx.items(cellIdentifier: "FindFeedCell", cellType: FindFeedCell.self)) {_, findFeed, cell in
-                cell.contentSnippet.attributedText = findFeed.contentSnippet
+                cell.contentSnippet.attributedText = findFeed.content
                 cell.titleLable.attributedText = findFeed.title
         
-            }
+            }.addDisposableTo(disposeBag)
         
         _ = searchBar.rx.text.orEmpty.bindTo(viewModel.searchText)
         _ = searchBar.rx.cancelButtonClicked.map{""}.bindTo(viewModel.searchText)
             
-            
     }
-        
+       _ =  tableView.rx.modelSelected(FindFeedRepresent.self).subscribe(onNext: {
+            print($0)
+            let _storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let loadFeedVC =  _storyboard.instantiateViewController(withIdentifier: "LoadFeedVC") as! LoadFeedViewController
+            loadFeedVC.stringURL = $0.url
+            self.navigationController?.pushViewController(loadFeedVC, animated: true)
+        })
 }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch segue.identifier {
+//        case "ToLoadFeedsSegue"? :
+//            if let indexPath = self.tableView.indexPathForSelectedRow {
+//                let loadFeedVC: LoadFeedViewController = segue.destination as! LoadFeedViewController
+//                loadFeedVC.stringURL = tableView.cellForRow(at: indexPath) as
+//            }
+//        default:
+//            break
+//        }
+//    }
     
     
 
@@ -49,7 +67,7 @@ class ViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter username"
-        //searchBar.text = "Путин"
+        searchBar.text = "Путин"
         searchBar.searchBarStyle = UISearchBarStyle.prominent
         //searchBar.isTranslucent = false
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
@@ -64,6 +82,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+   
 
 }
 

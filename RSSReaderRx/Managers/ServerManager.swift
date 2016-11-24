@@ -15,6 +15,7 @@ private let _singletonInstance = ServerManager()
 
 class ServerManager {
     private let basicURL = "https://ajax.googleapis.com/ajax/services/feed/find?v=1.0&q="
+    private let loadFeedURL = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q="
     class var shared: ServerManager {
         return _singletonInstance
     }
@@ -33,6 +34,26 @@ class ServerManager {
                      findFeeds = try unbox(dictionary: dict, atKeyPath: "responseData.entries")
                 }
                 return findFeeds
+        }
+    }
+    
+    func loadFeed(_ URLString: String) -> Observable<[LoadFeedModel]> {
+        guard !URLString.isEmpty, let URL = URL(string: loadFeedURL + URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+            else {
+                return Observable.just([])
+        }
+        
+        return URLSession.shared.rx.json(url: URL)
+                .catchErrorJustReturn(Observable.just([]))
+              // .debug("LOOOADING")
+                    .map {
+                      //  print($0)
+                        var loadFeeds = [LoadFeedModel]()
+                        if let dict = $0 as? UnboxableDictionary {
+                           // print(dict)
+                            loadFeeds = try unbox(dictionary: dict, atKeyPath: "responseData.feed.entries")
+                        }
+                        return loadFeeds
         }
     }
 }

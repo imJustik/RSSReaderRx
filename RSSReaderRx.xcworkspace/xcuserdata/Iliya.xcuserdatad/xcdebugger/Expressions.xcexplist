@@ -3,7 +3,72 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "LoadFeedViewController.viewWillAppear(Bool) -&gt; ():LoadFeedViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "labelt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.arrayFindFeeds">
+            </PersistentString>
+            <PersistentString
+               value = "tableView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoadFeedViewController.(viewDidLoad() -&gt; ()).(closure #1):LoadFeedViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "findFeed.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoadFeedViewModel.init() -&gt; LoadFeedViewModel:LoadFeedViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "feedURL.value">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoadFeedViewModel.(init() -&gt; LoadFeedViewModel).(closure #1):LoadFeedViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.eedURL">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ServerManager.(getRSSFindFeed(String) -&gt; Observable&lt;[FindFeedModel]&gt;).(closure #1):ServerManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "LoadFeedViewController.viewDidLoad() -&gt; ():LoadFeedViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "loadFeedViewModel">
+            </PersistentString>
+            <PersistentString
+               value = "viewModel.arrayLoadFeed">
+            </PersistentString>
+            <PersistentString
+               value = "tableView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ServerManager.(loadFeed(String) -&gt; Observable&lt;[LoadFeedModel]&gt;).(closure #1):ServerManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dict[&quot;responseData&quot;] as NSDictionary">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "FindFeedModel.init(unboxer : Unboxer) throws -&gt; FindFeedModel:FindFeedModel.swift">

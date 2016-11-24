@@ -10,11 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct FindFeedRepresent {
-    let url: String
-    let title: NSAttributedString
-    let contentSnippet: NSAttributedString
-}
+
 
 class FindFeedViewModel {
     
@@ -23,12 +19,7 @@ class FindFeedViewModel {
     
     let arrayFindFeeds = PublishSubject<[FindFeedRepresent]>()
     
-    var findFeed: FindFeedModel? {
-        didSet {
-            
-        }
-    }
-    
+
     
     init() {
         
@@ -36,16 +27,15 @@ class FindFeedViewModel {
             ServerManager.shared.getRSSFindFeed(text)
         }
         .observeOn(MainScheduler.instance)
-        .throttle(2, scheduler: MainScheduler.instance)
-        .debug("Representer")
-        
+        .throttle(1, scheduler: MainScheduler.instance)
+        .catchErrorJustReturn([])
         _ = resultFromServer.subscribe(onNext: { seq in
             var findFeedRepresent = [FindFeedRepresent]()
             if !seq.isEmpty {
                 seq.forEach {
-                    let title = self.prepareHTMLString(string: $0.title, font: "Times New Roman", fontSize: 18)
-                    let contentSnippet = self.prepareHTMLString(string: $0.contentSnippet, font: "Times New Roman", fontSize: 16)
-                    let pr = FindFeedRepresent(url: $0.url, title: title, contentSnippet: contentSnippet)
+                    let title = $0.title.prepareHTMLString(font: "Times New Roman", fontSize: 18)
+                    let contentSnippet = $0.content.prepareHTMLString(font: "Times New Roman", fontSize: 16)
+                    let pr = FindFeedRepresent(url: $0.url, title: title, content: contentSnippet)
                     findFeedRepresent.append(pr)
                 }
                 
@@ -59,17 +49,19 @@ class FindFeedViewModel {
     
     
     // т.к сервер возвращает строку в формате HTML (с тегами), необходимо сформировать NSAttributesString
+
     
-    private func prepareHTMLString(string: String, font: String, fontSize: Int) -> NSAttributedString {
+}
+
+extension String {
+    func prepareHTMLString(font: String, fontSize: Int) -> NSAttributedString {
         do {
-            let attString = try NSAttributedString(data: "<span style=\"font-family: \(font); font-size: \(fontSize)\">\(string)</span>".data(using: String.Encoding.unicode)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+            let attString = try NSAttributedString(data: "<span style=\"font-family: \(font); font-size: \(fontSize)\">\(self)</span>".data(using: String.Encoding.unicode)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
             return attString
         }
         catch {
             return NSAttributedString(string: "")
         }
-
-        
-        
-    }
+    
+}
 }
