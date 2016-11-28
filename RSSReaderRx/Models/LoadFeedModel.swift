@@ -15,12 +15,6 @@ struct LoadFeedModel: FeedProtocol {
     var content: String
 }
 
-struct LoadFeedRepresent {
-    let url: String
-    let title: NSAttributedString
-    let content: NSAttributedString
-}
-
 extension LoadFeedModel : Unboxable {
     
     init(unboxer: Unboxer) throws {

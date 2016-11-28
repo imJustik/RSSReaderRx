@@ -16,16 +16,6 @@ struct FindFeedModel: FeedProtocol {
     
 }
 
-
-/*
- Можно обойтись без этой структуры, и преобразовывать HTML текст непосредственно при заполнении полей таблицы, но в таком случае нагрузка на  CPU выше в 1.5 раза
- */
-struct FindFeedRepresent {
-    let url: String
-    let title: NSAttributedString
-    let content: NSAttributedString
-}
-
 extension FindFeedModel: Unboxable {
     init(unboxer: Unboxer) throws {
         do {

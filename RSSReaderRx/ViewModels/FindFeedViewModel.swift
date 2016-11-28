@@ -10,58 +10,32 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
-
 class FindFeedViewModel {
-    
-    
     var searchText = Variable("")
-    
-    let arrayFindFeeds = PublishSubject<[FindFeedRepresent]>()
-    
-
+    var arrayFindFeeds : Driver<[FindFeedModel]>
     
     init() {
-        
-        let resultFromServer = searchText.asObservable().flatMapLatest { text in
-            ServerManager.shared.getRSSFindFeed(text)
-        }
-        .observeOn(MainScheduler.instance)
-        .throttle(1, scheduler: MainScheduler.instance)
-        .catchErrorJustReturn([])
-        _ = resultFromServer.subscribe(onNext: { seq in
-            var findFeedRepresent = [FindFeedRepresent]()
-            if !seq.isEmpty {
-                seq.forEach {
-                    let title = $0.title.prepareHTMLString(font: "Times New Roman", fontSize: 18)
-                    let contentSnippet = $0.content.prepareHTMLString(font: "Times New Roman", fontSize: 16)
-                    let pr = FindFeedRepresent(url: $0.url, title: title, content: contentSnippet)
-                    findFeedRepresent.append(pr)
-                }
-                
-            }
-            self.arrayFindFeeds.onNext(findFeedRepresent)
-            findFeedRepresent = []
-        })
-        
-        
+        arrayFindFeeds = self.searchText.asObservable()
+            .throttle(0.3, scheduler: MainScheduler.instance)
+            .flatMapLatest {
+                ServerManager.shared.getRSSFindFeed($0)
+            }.asDriver(onErrorJustReturn: ([]))
+            .debug("data")
     }
-    
-    
-    // т.к сервер возвращает строку в формате HTML (с тегами), необходимо сформировать NSAttributesString
-
-    
 }
 
-extension String {
-    func prepareHTMLString(font: String, fontSize: Int) -> NSAttributedString {
-        do {
-            let attString = try NSAttributedString(data: "<span style=\"font-family: \(font); font-size: \(fontSize)\">\(self)</span>".data(using: String.Encoding.unicode)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
-            return attString
-        }
-        catch {
-            return NSAttributedString(string: "")
-        }
+extension Observable where Element: Hashable {
     
-}
+    func distinct() -> Observable<Element> {
+        var set = Set<Element>()
+        return flatMap { element -> Observable<Element> in
+            objc_sync_enter(self); defer {objc_sync_exit(self)}
+            if set.contains(element) {
+                return Observable<Element>.empty()
+            } else {
+                set.insert(element)
+                return Observable<Element>.just(element)
+            }
+        }
+    }
 }

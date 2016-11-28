@@ -1,19 +1,27 @@
 PODS:
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
   - RxCocoa (3.0.1):
     - RxSwift (~> 3.0)
   - RxSwift (3.0.1)
   - Unbox (2.2.0)
 
 DEPENDENCIES:
+  - RealmSwift
   - RxCocoa (~> 3.0)
   - RxSwift (~> 3.0)
   - Unbox
 
 SPEC CHECKSUMS:
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   Unbox: 03d7128ce429987986bc08d967e9d5e0da158946
 
-PODFILE CHECKSUM: 2e90160c7a4e24191606dcf478f2ad88cb579bcf
+PODFILE CHECKSUM: be2799a1169418eea97a6d0c61265205b29901a0
 
 COCOAPODS: 1.2.0.beta.1

@@ -17,9 +17,6 @@ class LoadFeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let disposeBag = DisposeBag()
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -28,9 +25,9 @@ class LoadFeedViewController: UIViewController {
         loadFeedViewModel = LoadFeedViewModel(URLString: stringURL)
         
         if let viewModel = loadFeedViewModel {
-            _ = viewModel.arrayLoadFeeds.bindTo(tableView.rx.items(cellIdentifier: "LoadFeedCell", cellType: LoadFeedCell.self)) {_, findFeed, cell in
-                cell.FeedLabel.attributedText = findFeed.content
-                cell.titleLable.attributedText = findFeed.title
+            _ = viewModel.arrayLoadFeeds.drive(tableView.rx.items(cellIdentifier: "LoadFeedCell", cellType: LoadFeedCell.self)) {_, findFeed, cell in
+                cell.FeedLabel.attributedText = findFeed.content.prepareHTMLString(font: "Times New Roman", fontSize: 16)
+                cell.titleLable.attributedText = findFeed.title.prepareHTMLString(font: "Times New Roman", fontSize: 18)
                 
                 }.addDisposableTo(disposeBag)
 
